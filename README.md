@@ -15,8 +15,8 @@ My Personal Dotfiles
    2) DOwnload Neovim, Neofetch, Htop, Tmux, Fish etc using Homebrew
    
    
-# If you are having trouble, please visit https://youtube.com/devaslife
-# most of my configurations are taken from him and my prompt and vscode theme is from https://www.youtube.com/c/TheDigitalLifeTech
+## If you are having trouble, please visit https://youtube.com/devaslife most of my configurations are taken from him
+## prompt and vscode theme is from https://www.youtube.com/c/TheDigitalLifeTech
 
 ## Important Links:-
   ### Linux Setup 
