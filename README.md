@@ -12,7 +12,7 @@ My Personal Dotfiles
   
  ### On Linux(recommended UBUNTU):
    1) Download Homebrew
-   2) DOwnload Neovim, Neofetch, Htop, Tmux, Fish etc using Homebrew
+   2) Download Neovim, Neofetch, Htop, Tmux, Fish etc using Homebrew
    
    
 ## If you are having trouble, please visit https://youtube.com/devaslife most of my configurations are taken from him
