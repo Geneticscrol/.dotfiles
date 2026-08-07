@@ -1,0 +1,23 @@
+{
+  "$schema": "https://app.kilo.ai/config.json",
+  "permission": {
+    "bash": "allow",
+    "read": "allow",
+    "glob": "allow",
+    "grep": "allow",
+    "list": "allow",
+    "external_directory": "ask",
+    "edit": "allow",
+    "skill": "allow",
+    "task": "allow"
+  },
+  "model": "minimax/MiniMax-M2.5-highspeed",
+  "small_model": "kilo/kilo-auto/free",
+  "compaction": {
+    "auto": true
+  },
+  "experimental": {
+    "codebase_search": true,
+    "openTelemetry": true
+  }
+}

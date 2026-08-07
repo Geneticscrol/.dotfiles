@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@opencode-ai/plugin": "1.4.3",
+    "oh-my-opencode": "^4.6.0"
+  }
+}

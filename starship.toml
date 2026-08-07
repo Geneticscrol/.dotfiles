@@ -1,0 +1,255 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+palette = "mono_blue"
+
+# PowerShell does NOT support right_format (official docs — only bash/zsh/fish/
+# cmd/nushell/elvish/xonsh). For multi-line prompts, Starship's $fill module
+# right-aligns the tool modules on the info line in EVERY shell, including pwsh.
+#
+#   󰍲 host@user ~\projects\app   main           22.12   pnpm   19:20
+#   ❯
+#
+# Docs:
+#   https://starship.rs/advanced-config/#enable-right-prompt
+#   https://starship.rs/config/#fill
+add_newline = false
+command_timeout = 1500
+scan_timeout = 30
+continuation_prompt = "[››](fg:ash) "
+
+format = """
+$os\
+$hostname\
+$username\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$cmd_duration\
+$fill\
+$nodejs\
+${custom.pnpm}\
+${custom.yarn}\
+${custom.npm}\
+$bun\
+$package\
+$python\
+$rust\
+$golang\
+$docker_context\
+$status\
+$time\
+$line_break\
+$character\
+"""
+
+# Kept for shells that support it (Git Bash, etc.). PowerShell ignores this.
+right_format = """
+$nodejs\
+${custom.pnpm}\
+${custom.yarn}\
+${custom.npm}\
+$bun\
+$package\
+$python\
+$rust\
+$golang\
+$docker_context\
+$status\
+$time\
+"""
+
+# Push everything after $fill to the right edge of the terminal
+[fill]
+symbol = " "
+style = "bold fg:slate"
+disabled = false
+
+# ── identity: OS  device@user ──────────────────────────────────────
+[os]
+disabled = false
+style = "bold blue"
+format = "[$symbol]($style) "
+
+[os.symbols]
+Windows = "󰍲"
+Ubuntu = "󰕈"
+Macos = ""
+Arch = "󰣇"
+Debian = "󰣚"
+Fedora = "󰣛"
+Linux = "󰌽"
+Manjaro = ""
+Mint = "󰣭"
+Alpine = ""
+Android = ""
+Redhat = "󱄛"
+RedHatEnterprise = "󱄛"
+
+[hostname]
+ssh_only = false
+style = "fg:mist"
+format = "[$hostname]($style)"
+trim_at = ""
+
+[username]
+disabled = false
+show_always = true
+style_user = "fg:silver"
+style_root = "bold fg:snow"
+format = "[@](fg:ash)[$user]($style) "
+
+# ── path ───────────────────────────────────────────────────────────
+[directory]
+disabled = false
+format = "[$path]($style)[$read_only]($read_only_style) "
+style = "bold ice"
+truncate_to_repo = false
+truncation_length = 8
+truncation_symbol = "…/"
+home_symbol = "~"
+read_only = " "
+read_only_style = "fg:ash"
+
+# ── git ────────────────────────────────────────────────────────────
+[git_branch]
+format = "[  $branch]($style)"
+style = "fg:silver"
+truncation_length = 32
+truncation_symbol = "…"
+
+[git_commit]
+disabled = true
+
+[git_state]
+format = " [$state( $progress_current/$progress_total)]($style)"
+style = "fg:ash"
+
+[git_status]
+style = "fg:sky"
+format = "([ $all_status$ahead_behind]($style))"
+ahead      = "⇡${count}"
+behind     = "⇣${count}"
+diverged   = "⇕⇡${ahead_count}⇣${behind_count}"
+conflicted = "="
+untracked  = "?"
+stashed    = "≡"
+modified   = "!"
+staged     = "+"
+renamed    = "»"
+deleted    = "✘"
+up_to_date = ""
+
+# ── right-side tools (after $fill) ─────────────────────────────────
+[nodejs]
+detect_extensions = ["js", "mjs", "cjs", "ts", "mts", "cts"]
+detect_files = [
+  "package.json",
+  ".node-version",
+  ".nvmrc",
+  "package-lock.json",
+  "yarn.lock",
+  "pnpm-lock.yaml",
+]
+detect_folders = ["node_modules"]
+format = "[ $version]($style) "
+style = "fg:blue"
+version_format = "${major}.${minor}"
+
+[bun]
+format = "[ $version]($style) "
+style = "fg:sky"
+version_format = "${major}.${minor}"
+detect_files = ["bun.lock", "bun.lockb", "bunfig.toml"]
+
+[package]
+disabled = false
+format = "[󰏗 $version]($style) "
+style = "fg:silver"
+version_format = "${raw}"
+display_private = true
+
+[custom.pnpm]
+description = "pnpm lockfile"
+detect_files = ["pnpm-lock.yaml"]
+command = "echo  pnpm"
+format = "[$output]($style) "
+style = "fg:sky"
+shell = ["cmd", "/C"]
+ignore_timeout = true
+
+[custom.yarn]
+description = "yarn lockfile"
+detect_files = ["yarn.lock"]
+command = "echo  yarn"
+format = "[$output]($style) "
+style = "fg:ice"
+shell = ["cmd", "/C"]
+ignore_timeout = true
+
+[custom.npm]
+description = "npm lockfile"
+detect_files = ["package-lock.json"]
+command = "echo  npm"
+format = "[$output]($style) "
+style = "fg:mist"
+shell = ["cmd", "/C"]
+ignore_timeout = true
+
+[python]
+format = "[ $version( \\($virtualenv\\))]($style) "
+style = "fg:silver"
+version_format = "${major}.${minor}"
+
+[rust]
+format = "[ $version]($style) "
+style = "fg:silver"
+version_format = "${major}.${minor}"
+
+[golang]
+format = "[ $version]($style) "
+style = "fg:ice"
+detect_files = ["go.mod"]
+version_format = "${major}.${minor}"
+
+[docker_context]
+format = "[ $context]($style) "
+style = "fg:blue"
+only_with_files = true
+
+# ── chrome ─────────────────────────────────────────────────────────
+[character]
+success_symbol = "[❯](bold blue)"
+error_symbol = "[❯](bold snow)"
+vimcmd_symbol = "[❮](fg:sky)"
+
+[cmd_duration]
+min_time = 2_000
+format = "[$duration]($style) "
+style = "fg:ash"
+
+[status]
+disabled = false
+format = "[$symbol]($style) "
+symbol = "✘"
+style = "bold ice"
+map_symbol = true
+
+[time]
+disabled = false
+time_format = "%R"
+format = "[ $time]($style)"
+style = "fg:ash"
+
+# ── mono blue (translucent-safe) ───────────────────────────────────
+[palettes.mono_blue]
+snow   = "#f4f7fb"
+white  = "#e6ebf2"
+mist   = "#c2cad6"
+silver = "#9aa5b4"
+ash    = "#6d7685"
+slate  = "#4b5360"
+ice    = "#8be9fd"
+sky    = "#769ff0"
+blue   = "#4d8fd9"
+cobalt = "#2f6fb5"

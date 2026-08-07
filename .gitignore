@@ -1,0 +1,41 @@
+# Dependencies & install artifacts
+**/node_modules/
+**/package-lock.json
+**/yarn.lock
+**/pnpm-lock.yaml
+**/bun.lock
+**/bun.lockb
+
+# Secrets — never commit live credentials
+**/*credential*
+**/*credentials*
+**/*secret*
+**/.env
+**/.env.*
+!**/.env.example
+**/*.pem
+**/*.key
+**/auth.json
+opencode/opencode.json
+
+# Local state, history, logs, backups
+**/*.log
+**/logs/
+**/*history*
+**/history.txt
+**/*.bak
+**/*.bak-*
+**/*.backup
+**/*.backup-*
+**/.cache/
+**/tmp/
+**/temp/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.swp
+*~
